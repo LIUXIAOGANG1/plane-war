@@ -42,7 +42,6 @@ public class GameStart extends Frame {
 	Image[] bulletImgs, enemyImgs, boomImgs, bulletBossImgs, foodImgs;
 
 	public GameStart() {
-
 		this.setTitle("飞机大战");
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
@@ -52,7 +51,7 @@ public class GameStart extends Frame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				//TODO 记录成绩
+				//TODO 关闭窗口时，记录成绩
 				User user = new User(LoginSystem.user.getText(), score, level);
 				OperationDB.updateMatch(user);
 				System.exit(0);
@@ -70,7 +69,7 @@ public class GameStart extends Frame {
 					plane.x = 250;
 					plane.y = 500;
 					
-					//TODO 配置音乐
+					//TODO 配置背景音乐
 					MusicPlayer musicPlayer = new MusicPlayer();
 					musicPlayer.loadMusic(GameStart.class.getResource("/music/background.mid").getFile());
 					musicPlayer.playMusic();
@@ -177,12 +176,14 @@ public class GameStart extends Frame {
 	public void paint(Graphics g) {
 		if (!plane.isFirst) {
 			bg.drawMe(g);
+			//TODO 可以根据关卡级别设置敌机生成速度
 			if (ran.nextInt(100) > 97) {
 				enemies.add(new Enemy(ran.nextInt(500) + 10, 0, true, GameStart.this));
 			}
 			if (foods.size() < 3 && count == 5) {
 				foods.add(new Food(ran.nextInt(500) + 10, 0, GameStart.this, true));
 			}
+			
 			for (int i = 0; i < enemies.size(); i++) {
 				Enemy enemy = enemies.get(i);
 				if (enemy.alive) {
@@ -191,6 +192,7 @@ public class GameStart extends Frame {
 					enemies.remove(i);
 				}
 			}
+			
 			for (int i = 0; i < bulletEms.size(); i++) {
 				BulletEm bullet = bulletEms.get(i);
 				if (bullet.alive) {

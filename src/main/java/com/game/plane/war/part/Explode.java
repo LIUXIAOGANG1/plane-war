@@ -33,7 +33,7 @@ public class Explode {
 		if (index >= 10)
 			alive = false;
 		if (isBoss) {
-			//TODO 添加音效
+			//TODO 爆炸音效（最好用线程，代码参考子弹音效代码）
 //			MusicPlayer musicPlayer = new MusicPlayer();
 //			musicPlayer.loadMusic(Explode.class.getResource("/music/").getFile());
 //			musicPlayer.playMusic();

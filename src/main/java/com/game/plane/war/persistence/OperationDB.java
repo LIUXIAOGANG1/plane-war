@@ -79,6 +79,7 @@ public class OperationDB {
 			Connection con = DataBaseTool.getConnection();
 			Statement st = con.createStatement();
 			
+			//TODO 本次游戏关卡数大于原数据库中关卡数时才执行成绩更新操作。
 			if(old.getLevel() <= user.getLevel()){
 				st.executeUpdate("UPDATE user set score=" + user.getScore() + ", level=" + user.getLevel() + " WHERE name='" + user.getName() + "'");
 			}

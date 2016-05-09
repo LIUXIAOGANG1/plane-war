@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Plane {
 	int x;
@@ -140,8 +141,28 @@ public class Plane {
 		canL=canK=false;
 	}
 	private void fire() {
-		//TODO 控制子弹声音
+		//TODO 控制子弹声音(释放下面代码，更改线程中的音乐文件)
+//		try {
+//			TimeUnit.MILLISECONDS.sleep(2);
+//			new MyThread().start();
+//		} catch (Exception e) {
+//		}
+		
 		bullets.add(new Bullet(true, gs));
+	}
+	
+	class MyThread extends Thread {
+		@Override
+		public void run() {
+			MusicPlayer musicPlayer = new MusicPlayer();
+			musicPlayer.loadMusic(GameStart.class.getResource("/music/background.mid").getFile());
+			musicPlayer.playMusic();
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (Exception e) {
+			}
+			musicPlayer.stopPlaying();
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {

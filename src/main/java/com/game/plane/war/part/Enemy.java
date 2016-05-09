@@ -103,7 +103,7 @@ public class Enemy {
 //		}
 //		y += 5;
 		
-		if (x > 400 || x < -200)
+		if (x > 500 || x < -200)
 			k = -k;
 		x += 5 * k;
 		y += 5;
