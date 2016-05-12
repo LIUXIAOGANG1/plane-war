@@ -38,9 +38,13 @@ public class BulletEm {
 			plane.count--;
 			plane.canK = false;
 			plane.canL = false;
+			
+			//TODO 停止播放背景音乐
 			if (plane.count == 0) {
 				gs.explodes.add(new Explode(plane.x, plane.y, gs, true));
 				plane.alive = false;
+				
+				GameStart.musicPlayer.stopPlaying();
 			}
 
 		}

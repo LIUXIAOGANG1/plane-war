@@ -17,9 +17,10 @@ public class BulletBoss {
 	Plane plane;
 	Random random = new Random();
 	int index = random.nextInt(10);
+
 	public BulletBoss(boolean alive, GameStart gs, Boss boos) {
 		super();
-		this.y = boos.y+50;
+		this.y = boos.y + 50;
 		this.x = boos.x;
 		this.alive = alive;
 		this.gs = gs;
@@ -29,33 +30,37 @@ public class BulletBoss {
 
 	public void drawMe(Graphics g) {
 		if (alive) {
-			if(index >= 9){
-				fx=x+20;
-				height=width=34;
+			if (index >= 9) {
+				fx = x + 20;
+				height = width = 34;
 				g.drawImage(gs.bulletBossImgs[1], fx, y, width, height, null);
 				y += 8;
-				if (plane.alive&&plane.getRectangle().intersects(getRectangle(fx,y,34,34))) {
+				if (plane.alive && plane.getRectangle().intersects(getRectangle(fx, y, 34, 34))) {
 					alive = false;
 					plane.count--;
-					plane.canK=false;
-					if (plane.count==0) {
+					plane.canK = false;
+					if (plane.count == 0) {
 						gs.explodes.add(new Explode(plane.x, plane.y, gs, true));
 						plane.alive = false;
 					}
 				}
-			}else if(index<=3){
-				height=11;
-				width=13;
-				fx=x+400;
-				g.drawImage(gs.bulletBossImgs[0], x+400, y+100, height, width, null);
+			} else if (index <= 3) {
+				height = 11;
+				width = 13;
+				fx = x + 400;
+				g.drawImage(gs.bulletBossImgs[0], x + 400, y + 100, height, width, null);
 				move();
-				if (plane.alive&&plane.getRectangle().intersects(getRectangle(fx,y+100,15,13))) {
+				if (plane.alive && plane.getRectangle().intersects(getRectangle(fx, y + 100, 15, 13))) {
 					alive = false;
 					plane.count--;
-					plane.canL=false;
-					if (plane.count==0) {
+					plane.canL = false;
+
+					// TODO 停止播放背景音乐
+					if (plane.count == 0) {
 						gs.explodes.add(new Explode(plane.x, plane.y, gs, true));
 						plane.alive = false;
+						
+						GameStart.musicPlayer.stopPlaying();
 					}
 				}
 			}
@@ -64,7 +69,7 @@ public class BulletBoss {
 	}
 
 	public void isHitted() {
-		
+
 	}
 
 	public void move() {
@@ -75,6 +80,6 @@ public class BulletBoss {
 	}
 
 	public Rectangle getRectangle(int... a) {
-		return new Rectangle(a[0],a[1],a[2],a[3]);
+		return new Rectangle(a[0], a[1], a[2], a[3]);
 	}
 }

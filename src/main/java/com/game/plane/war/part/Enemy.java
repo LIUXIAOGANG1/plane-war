@@ -80,8 +80,12 @@ public class Enemy {
 		if (plane.alive && plane.getRectangle().intersects(getRectangle())) {
 			alive = false;
 			plane.count--;
+			
+			//TODO 停止播放背景音乐
 			if (plane.count == 0) {
 				plane.alive = false;
+				
+				GameStart.musicPlayer.stopPlaying();
 			}
 
 		}

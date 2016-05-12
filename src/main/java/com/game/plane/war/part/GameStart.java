@@ -41,6 +41,8 @@ public class GameStart extends Frame {
 	Image img, bulletImg, bgImg, planeImg, bulletEmImg, bulletEm1Img, boosImg, ult, continueImg, lifePlane, startImg;
 	Image[] bulletImgs, enemyImgs, boomImgs, bulletBossImgs, foodImgs;
 
+	public static MusicPlayer musicPlayer = new MusicPlayer();
+	
 	public GameStart() {
 		this.setTitle("飞机大战");
 		this.setSize(width, height);
@@ -70,7 +72,7 @@ public class GameStart extends Frame {
 					plane.y = 500;
 					
 					//TODO 配置背景音乐
-					MusicPlayer musicPlayer = new MusicPlayer();
+					
 					musicPlayer.loadMusic(GameStart.class.getResource("/music/background.mid").getFile());
 					musicPlayer.playMusic();
 				}
